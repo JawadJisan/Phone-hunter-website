@@ -13,7 +13,7 @@ searchBtn.addEventListener('click',
     function () 
     {
         const searchArea = document.getElementById('searchArea').value;
-        
+
     const searchField = document.getElementById('searchArea');
     // clear data
     searchField.value = '';
@@ -44,17 +44,20 @@ function getPhones(searchArea){
 
     const displayPhone = phones => 
     {
+        phones.forEach(phone => {
+            console.log('the',phone.lenght)
+        });
+        console.log('console', phones.lenght)
         const phoneDiv = document.getElementById('phone');
 
         if (phones != null  ){
             phones.map(phone => 
                 {
-                console.log(phone.brand)
-                console.log(phone.lenght)
+                console.log(phone)
+                // console.log(phone)
                 // console.log(phone.slug)
                 const newDiv = document.createElement('div');
                 newDiv.className = 'col-lg-4';
-                // <a href="#clicked" class="text-decoration-none text-white">                        </a>
 
                 const phoneInfo = 
                     `
@@ -96,6 +99,7 @@ function getPhones(searchArea){
 
     };
 
+    // display mobile phone search result
     const displayDetails = id =>{
         const url = `https://openapi.programming-hero.com/api/phone/${id}`;
         fetch(url)
@@ -108,9 +112,11 @@ function getPhones(searchArea){
         const phoneDetailsDiv = document.getElementById('phoneDetails');
 
         phoneDetailsDiv.innerHTML = `
+            <div id="phone-details">
             <img class="img-fluid rounded-top" src="${phone.image}" alt="">
             <h4>Name: ${phone.name}</h4>
             <h4>Release Date: ${phone.releaseDate ? phone.releaseDate: 'No Release Date Found!!' }</h4>
+            </div>
             <h3 class="pt-3 text-center">Main Features </h3>
             
         <ul class="list-unstyled mb-0">
@@ -129,14 +135,9 @@ function getPhones(searchArea){
             <li>✅Radio: ${phone.others.Radio}</li>
             <li>✅USB: ${phone.others.USB}</li>
             <li>✅WLAN: ${phone.others.WLAN}</li>
-
-
-
-
         </ul>
         
-        
         `
-    }
+    };
 
  
