@@ -28,6 +28,7 @@ searchBtn.addEventListener('click',
             getPhones(searchArea);
             warning.style.display = 'none';
         }
+
     }
 );
 
@@ -44,13 +45,12 @@ function getPhones(searchArea){
 
     const displayPhone = phones => 
     {
-        phones.forEach(phone => {
-            console.log('the',phone.lenght)
-        });
-        console.log('console', phones.lenght)
+        // phones.forEach(phone => {
+        //     console.log('the',phone.lenght)
+        // });
         const phoneDiv = document.getElementById('phone');
 
-        if (phones != null  ){
+        if (phones != null){
             phones.map(phone => 
                 {
                 console.log(phone)
@@ -70,12 +70,9 @@ function getPhones(searchArea){
 
                         <h4 class=" py-4 px-2 mb-0">Model: ${phone.phone_name}</h4>
                         <button id="details-btn" onclick="displayDetails('${phone.slug}')" class="btn btn-primary" type="button">Details</button>
-
-
-
-
                         </div>
-                    `;
+                    `
+                    ;
 
                 newDiv.innerHTML = phoneInfo;
                 phoneDiv.appendChild(newDiv);
@@ -93,8 +90,6 @@ function getPhones(searchArea){
         else{
             warning.style.display = 'block';
             toggleSpinner('none')
-
-
         }
 
     };
@@ -121,9 +116,9 @@ function getPhones(searchArea){
             
         <ul class="list-unstyled mb-0">
             <li>✅ChipSet: ${phone.mainFeatures.chipSet}</li>
-            <li>✅Display Size:${phone.mainFeatures.displaySize}</li>
+            <li>✅Display Size: ${phone.mainFeatures.displaySize}</li>
             <li>✅Memomry: ${phone.mainFeatures.memory}</li>
-            <li>✅Storage${phone.mainFeatures.storage}</li>
+            <li>✅Storage: ${phone.mainFeatures.storage}</li>
 
             <h3 class="pt-3 text-center">Sensors</h3>
             <li>✅Sensors: ${phone.mainFeatures.sensors}</li>
