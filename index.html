@@ -20,17 +20,21 @@
 
             <input id="search-field" type="text" class="form-control" placeholder="Find Your Phone" aria-label="Recipient's username" aria-describedby="button-addon2"> 
 
-            <button onclick="searchFood()" class="btn btn-outline-secondary text-center" type="button" id="button-addon2">Search</button> <br>
+            <button onclick="searchMobile()" class="btn btn-outline-secondary text-center" type="button" id="button-addon2">Search</button> <br>
         </div>
 
-        <div class="">
+        <div class="d-flex justify-content-evenly">
             <button type="button" class="btn btn-primary">All</button>
             <button type="button" class="btn btn-outline-secondary">iPhone</button>
             <button type="button" class="btn btn-outline-secondary">Samsung</button>
             <button type="button" class="btn btn-outline-secondary">Xiaomi</button>
-
-
         </div>
+
+        <!-- warning Massege -->
+        <section class="container py-5">
+            <div id="food" class="row g-3"></div>
+            <p id="warning" class="fw-bolder fs-3 lead text-warning text-center">Please enter valid MOBILE name.</p>
+        </section>
     </main>
 
 
