@@ -3,13 +3,24 @@ const containerData = document.getElementById('phone');
 const warning = document.getElementById('warning');
 warning.style.display = 'none';
 
+// spinner
+const toggleSpinner = displaySpinner =>{
+    document.getElementById('spinner').style.display = displaySpinner;
+    
+}
+
 searchBtn.addEventListener('click', 
     function () 
     {
         const searchArea = document.getElementById('searchArea').value;
-        searchArea.innerHTML = '';
+        
+    const searchField = document.getElementById('searchArea');
+    // clear data
+    searchField.value = '';
+        toggleSpinner('block');
+        // document.getElementById('searchArea') = '';
         containerData.innerHTML = '';
-        if (searchArea === '') {
+        if (searchArea === '' && searchArea != getPhones  ) {
             warning.style.display = 'block';
         } 
         else 
@@ -19,6 +30,8 @@ searchBtn.addEventListener('click',
         }
     }
 );
+
+
 
 function getPhones(searchArea){
 
@@ -32,39 +45,55 @@ function getPhones(searchArea){
     const displayPhone = phones => 
     {
         const phoneDiv = document.getElementById('phone');
-        if (phones != null) 
-        {
+
+        if (phones != null  ){
             phones.map(phone => 
                 {
                 console.log(phone.brand)
-                console.log(phone.slug)
+                console.log(phone.lenght)
+                // console.log(phone.slug)
                 const newDiv = document.createElement('div');
-                newDiv.className = 'col-md-3';
+                newDiv.className = 'col-lg-4';
+                // <a href="#clicked" class="text-decoration-none text-white">                        </a>
+
                 const phoneInfo = 
                     `
-                        <a href="#clicked" class="text-decoration-none text-white">
 
-                        <div id="clicked" onclick="displayDetails('${phone.slug}')" class="bg-info rounded text-center h-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div id="clicked"  class="p-3 rounded text-center h-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
-                        <img class="img-fluid rounded-top" src="${phone.image}" alt="">
+                        <img class="img-fluid w-75 rounded-top" src="${phone.image}" alt="">
 
-                        <h3 class=" py-4 px-2 mb-0">${phone.brand}</h3>
+                        <h3 class=" py-4 px-2 mb-0">Brand: ${phone.brand}</h3>
 
-                        <h4 class=" py-4 px-2 mb-0">${phone.phone_name}</h4>
+                        <h4 class=" py-4 px-2 mb-0">Model: ${phone.phone_name}</h4>
+                        <button id="details-btn" onclick="displayDetails('${phone.slug}')" class="btn btn-primary" type="button">Details</button>
+
+
+
 
                         </div>
-                        </a>
                     `;
 
                 newDiv.innerHTML = phoneInfo;
                 phoneDiv.appendChild(newDiv);
                 }
             );
+            toggleSpinner('none')
         } 
-        else
+
+        else if(phones.lenght == 0 && !phones)
         {
             warning.style.display = 'block';
+            toggleSpinner('none')
+
         }
+        else{
+            warning.style.display = 'block';
+            toggleSpinner('none')
+
+
+        }
+
     };
 
     const displayDetails = id =>{
@@ -79,10 +108,11 @@ function getPhones(searchArea){
         const phoneDetailsDiv = document.getElementById('phoneDetails');
 
         phoneDetailsDiv.innerHTML = `
-            <img class="img rounded mb-4" src="${phone.image}" alt="">
+            <img class="img-fluid rounded-top" src="${phone.image}" alt="">
             <h4>Name: ${phone.name}</h4>
-            <h4>Release Date: ${phone.releaseDate}</h4>
+            <h4>Release Date: ${phone.releaseDate ? phone.releaseDate: 'No Release Date Found!!' }</h4>
             <h3 class="pt-3 text-center">Main Features </h3>
+            
         <ul class="list-unstyled mb-0">
             <li>✅ChipSet: ${phone.mainFeatures.chipSet}</li>
             <li>✅Display Size:${phone.mainFeatures.displaySize}</li>
