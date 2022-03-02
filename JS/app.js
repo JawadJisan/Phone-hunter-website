@@ -33,7 +33,6 @@ searchBtn.addEventListener('click',
 );
 
 
-
 function getPhones(searchArea){
 
     const mainApi = `https://openapi.programming-hero.com/api/phones?search=${searchArea}`;
@@ -41,6 +40,7 @@ function getPhones(searchArea){
     fetch(mainApi)
         .then(res => res.json())
         .then(data => displayPhone(data.data));
+        
 }
 
     const displayPhone = phones => 
@@ -53,7 +53,7 @@ function getPhones(searchArea){
         if (phones != null){
             phones.map(phone => 
                 {
-                console.log(phone)
+                // console.log(phone)
                 // console.log(phone)
                 // console.log(phone.slug)
                 const newDiv = document.createElement('div');
@@ -124,7 +124,7 @@ function getPhones(searchArea){
             <li>✅Sensors: ${phone.mainFeatures.sensors}</li>
 
             <h3 class="pt-3 text-center">Others</h3>
-            <li>✅Blututh: ${phone.others.Bluetooth}</li>
+            <li>✅Blututh: ${phone.others.Bluetooth ? phone.others.Bluetooth: 'Not Available' }</li>
             <li>✅GPS: ${phone.others.GPS}</li>
             <li>✅NFC: ${phone.others.NFC}</li>
             <li>✅Radio: ${phone.others.Radio}</li>
