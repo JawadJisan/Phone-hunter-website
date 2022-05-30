@@ -46,14 +46,16 @@ function getPhones(searchArea){
     const displayPhone = phones => 
     {
         // phones.forEach(phone => {
-        //     console.log('the',phone.lenght)
+        
         // });
         const phoneDiv = document.getElementById('phone');
 
         if (phones != null){
-            phones.map(phone => 
+            phones.forEach(phone => 
                 {
                 // console.log(phone)
+                console.log('the',phones.lenght)
+
                 // console.log(phone)
                 // console.log(phone.slug)
                 const newDiv = document.createElement('div');
